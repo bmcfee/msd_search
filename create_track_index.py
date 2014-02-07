@@ -29,10 +29,10 @@ def create_index_writer(index_path):
     analyzer = (whoosh.analysis.StemmingAnalyzer() | 
                 whoosh.analysis.CharsetFilter(accent_map))
 
-    schema = whoosh.fields.Schema(track_id  = whoosh.fields.TEXT(stored=True),
-                                  song_id   = whoosh.fields.TEXT(stored=True),
-                                  artist_name = whoosh.fields.TEXT(stored=True, analyzer=analyzer),
-                                  title = whoosh.fields.TEXT(stored=True, analyzer=analyzer))
+    schema = whoosh.fields.Schema(track_id      = whoosh.fields.TEXT(stored=True),
+                                  song_id       = whoosh.fields.TEXT(stored=True),
+                                  artist_name   = whoosh.fields.TEXT(stored=True, analyzer=analyzer),
+                                  title         = whoosh.fields.TEXT(stored=True, analyzer=analyzer))
 
     index = whoosh.index.create_in(index_path, schema)
 
@@ -48,7 +48,7 @@ def create_track_index(unique_tracks='', index_dir=''):
 
     with open(unique_tracks, 'r') as track_file:
         for line in track_file:
-            track_id, song_id, artist_name, title = splitter.split(line.strip(), 4)
+            track_id, song_id, artist_name, title = splitter.split(unicode(line.strip(), errors='ignore'), 4)
 
             writer.add_document(track_id=track_id, 
                                 song_id=song_id, 
