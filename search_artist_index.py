@@ -36,7 +36,7 @@ def process_arguments(args):
                         type=unicode, 
                         help='artist search string', 
                         default=None,
-                        required=False)
+                        required=True)
 
     parser.add_argument('-n', '--num_results', 
                         action='store', 
