@@ -30,7 +30,7 @@ def create_index_writer(index_path):
                 whoosh.analysis.CharsetFilter(accent_map))
 
     schema = whoosh.fields.Schema(track_id  = whoosh.fields.TEXT(stored=True),
-                                  song_id   = whoosh.fields.TEXT(sstored=True),
+                                  song_id   = whoosh.fields.TEXT(stored=True),
                                   artist_name = whoosh.fields.TEXT(stored=True, analyzer=analyzer),
                                   title = whoosh.fields.TEXT(stored=True, analyzer=analyzer))
 
